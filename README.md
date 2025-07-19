@@ -1,93 +1,291 @@
-# 🪐 معرفی NetSheet
+# 📑 مستندات API
 
-برنامه NetSheet یک برنامه پیشرفته و متصل به **GitHub** است که امکان ایجاد **هاست اختصاصی** با قابلیت‌های گیت‌هاب را برای کاربران فراهم می‌کند. این برنامه با **محدودیت‌های بسیار کم**، بستری مناسب برای مدیریت فایل‌ها و داده‌های شما ارائه می‌دهد.
-
-## ✨ ویژگی‌های NetSheet
-
-✅ **ساخت و مدیریت انواع فرمت‌های فایلی**  
-✅ **ویرایش، حذف و مدیریت فایل‌های ایجاد شده**  
-✅ **آپلودر قدرتمند برای رسانه‌ها** (تصاویر، ویدئوها، فایل‌های نصبی و...)  
-
-## ⚖️ مزایا و معایب NetSheet
-
-### ✅ مزایا  
-✔ **کاملاً رایگان**  
-✔ **حجم بالای حافظه برای هاست**  
-✔ **ارائه API جهت مدیریت هاست در اپلیکیشن‌های شما**  
-✔ **پشتیبانی آنلاین و دائمی**  
-✔ **محدودیت‌های بسیار کم (وابسته به محدودیت‌های GitHub)**  
-
-### ❌ معایب  
-✖ **کنترل مستقیم بر هاست وجود ندارد**  
-✖ **مدیریت هاست تنها از طریق API امکان‌پذیر است**  
-✖ **هاست شما در GitHub قابل مشاهده نیست**  
-✖ **به دلیل مسائل امنیتی، اجرای هیچ زبان برنامه‌نویسی در هاست مجاز نیست**  
-
-## 🔒 امنیت در NetSheet  
-
-برنامه NetSheet **امنیت کاربران را تضمین می‌کند** ❤️.  
-
-🔹 **چرا امنیت بالایی دارد؟**  
-هاست هر کاربر در یک **اکانت اختصاصی GitHub** ذخیره می‌شود، همراه با ایمیل‌های جداگانه برای هر حساب.  
-
-🔹 **مدیریت هاست از طریق API NetSheet**  
-این قابلیت باعث افزایش امنیت می‌شود، زیرا **کنترل هاست‌ها از طریق لایسنس اختصاصی** انجام می‌شود. کاربران تنها **لایسنس خود را حفظ می‌کنند** و هیچ اطلاعاتی از هاست خود در اختیار ندارند. 🙊  
-
-## ⏳ زمان انتشار NetSheet  
-
-📅 **تاریخ انتشار NetSheet هنوز مشخص نیست** و هیچ ضمانتی در این خصوص وجود ندارد.  
-
-## 📢 چگونه از اخبار NetSheet مطلع شویم؟  
-
-🔹 [کانال رسمی NetSheet در تلگرام](https://t.me/NetSheetOfficial)  
-🔹 [صفحه رسمی NetSheet در GitHub](https://github.com/NetSheet)  
-
-برنامه NetSheet، دنیای جدیدی از **مدیریت هاست و فایل‌ها** را برای شما به ارمغان می‌آورد! 🚀  
+## 🌐 آدرس API
+`https://netsheet.freehost.io/api/`
 
 ---
 
-# 🪐 Introducing NetSheet
+## 🧭 نحوه استفاده از API
 
-NetSheet is an advanced **GitHub**-connected program that allows users to create **dedicated hosting** with GitHub capabilities. With **very few limitations**, this program offers a convenient platform for managing your files and data.
+- ارسال پارامترهای GET:
+  - `token`: توکن کاربر برای احراز هویت
+  - `mode`: متد مورد نظر
 
-## ✨ NetSheet Features  
+- سایر پارامترها بسته به نوع متد به صورت POST ارسال می‌شوند.
 
-✅ **Create and manage various file formats**  
-✅ **Edit, delete and manage created files**  
-✅ **Powerful uploader for media** (images, videos, installation files, etc.)  
+---
 
-## ⚖️ Advantages and disadvantages of NetSheet  
+## ✅ مثال CURL
 
-### ✅ Advantages  
-✔ **Completely free**  
-✔ **Large amount of memory for the host**  
-✔ **Provide API for managing hosts in your applications**  
-✔ **Online and permanent support**  
-✔ **Very few limitations (depending on GitHub limitations)**  
+```
+curl -X POST "https://netsheet.freehost.io/api/?token=123456&mode=CREATE_NEW_FILE" \
+  -d "fileName=test.txt" \
+  -d "in=docs/"
+```
 
-### ❌ Disadvantages  
-✖ **There is no direct control over the host**  
-✖ **Host management is only possible via API**  
-✖ **Your host is not visible on GitHub**  
-✖ **Due to security issues, running any programming language on the host is not allowed**  
+---
 
-## 🔒 Security in NetSheet  
+## 🔒 احراز هویت
 
-NetSheet application **Ensures user security** ❤️.  
+توکن در پایگاه داده بررسی شده و اطلاعات GitHub شما واکشی می‌شود.
 
-🔹 **Why is it so secure?**  
-Each user's host is stored in a **dedicated GitHub account**, with separate emails for each account.  
+---
 
-🔹 **Host management via NetSheet API**  
-This feature increases security, because **host control is done via a dedicated license**. Users only **keep their license** and do not have any information about their host. 🙊  
+## 🛠 پارامترهای GET عمومی
 
-## ⏳ NetSheet release time  
+| پارامتر | نوع | اجباری | توضیح |
+|--------|-----|--------|-------|
+| token  | string | ✅ | توکن GitHub |
+| mode   | string | ✅ | نام متد مورد نظر |
 
-📅 **NetSheet release date is not yet known** and there is no guarantee in this regard.  
+---
 
-## 📢 How ​​to stay informed about NetSheet news?  
+## 📄 CREATE_NEW_FILE
 
-🔹 [NetSheet official channel on Telegram](https://t.me/NetSheetOfficial)  
-🔹 [NetSheet official page on GitHub](https://github.com/NetSheet)  
+| پارامتر | نوع | اجباری | توضیح |
+|---------|-----|--------|--------|
+| fileName | string | ✅ | نام فایل جدید |
+| in       | string | ❌ | مسیر پوشه دلخواه |
 
-NetSheet brings you a new world of **host and file management**! 🚀
+### ✅ خروجی موفق
+```json
+{
+  "status": true,
+  "message": "File successfully created.",
+  "result": {
+    "path": "docs/readme.txt",
+    "url": "https://username.github.io/docs/readme.txt"
+  }
+}
+```
+
+### ❌ خروجی ناموفق
+```json
+{
+  "status": false,
+  "message": "Missing POST parameter: fileName"
+}
+```
+
+---
+
+## ✏️ EDIT_DATA_FILE
+
+| پارامتر     | نوع | اجباری | توضیح         |
+|-------------|-----|--------|----------------|
+| fileName    | string | ✅ | نام فایل |
+| newContent  | string | ✅ | محتوای جدید |
+| in          | string | ❌ | مسیر فایل |
+
+### ✅ خروجی موفق
+```json
+{
+  "status": true,
+  "message": "File successfully updated.",
+  "result": {
+    "path": "file.txt",
+    "url": "https://username.github.io/file.txt"
+  }
+}
+```
+
+### ❌ خروجی ناموفق
+```json
+{
+  "status": false,
+  "message": "File not found or SHA missing."
+}
+```
+
+---
+
+## ❌ DELETE_FILE
+
+| پارامتر | نوع | اجباری | توضیح |
+|---------|-----|--------|--------|
+| fileName | string | ✅ | نام فایل |
+| in       | string | ❌ | مسیر فایل |
+
+### ✅ خروجی موفق
+```json
+{
+  "status": true,
+  "message": "File successfully deleted.",
+  "result": {
+    "path": "file.txt",
+    "url": "https://username.github.io/file.txt"
+  }
+}
+```
+
+### ❌ خروجی ناموفق
+```json
+{
+  "status": false,
+  "message": "File not found or SHA missing."
+}
+```
+
+---
+
+## 🔁 RENAME_FILE
+
+| پارامتر | نوع | اجباری | توضیح |
+|---------|-----|--------|--------|
+| oldName | string | ✅ | نام فعلی فایل |
+| newName | string | ✅ | نام جدید فایل |
+| in      | string | ❌ | مسیر فایل |
+
+### ✅ خروجی موفق
+```json
+{
+  "status": true,
+  "message": "File successfully renamed.",
+  "result": {
+    "path": "newname.txt",
+    "url": "https://username.github.io/newname.txt"
+  }
+}
+```
+
+### ❌ خروجی ناموفق
+```json
+{
+  "status": false,
+  "message": "File not found or SHA missing."
+}
+```
+
+---
+
+## 🔍 GET_INFO_FILE
+
+| پارامتر  | نوع | اجباری | توضیح |
+|----------|-----|--------|--------|
+| fileName | string | ✅ | نام فایل |
+| in       | string | ❌ | مسیر فایل |
+
+### ✅ خروجی موفق
+```json
+{
+  "status": true,
+  "message": "File successfully retrieved.",
+  "result": {
+    "path": "folder/file.txt",
+    "url": "https://username.github.io/folder/file.txt",
+    "size": 102,
+    "content": "hello world",
+    "format": "txt",
+    "name": "file.txt",
+    "namenoext": "file",
+    "folder": "folder"
+  }
+}
+```
+
+### ❌ خروجی ناموفق
+```json
+{
+  "status": false,
+  "message": "File does not exist in the repository."
+}
+```
+
+---
+
+## 📂 GET_ALL_FILES
+
+| پارامتر | نوع | اجباری | توضیح |
+|--------|-----|--------|--------|
+| in     | string | ❌ | مسیر پوشه |
+
+### ✅ خروجی موفق
+```json
+{
+  "status": true,
+  "message": "All files retrieved.",
+  "result": [
+    {
+      "name": "file1.txt",
+      "url": "https://username.github.io/docs/file1.txt",
+      "size": 54,
+      "content": "hello world",
+      "format": "txt",
+      "namenoext": "file1",
+      "folder": "docs"
+    }
+  ]
+}
+```
+
+### ❌ خروجی ناموفق
+```json
+{
+  "status": false,
+  "message": "No files found in the repository."
+}
+```
+
+---
+
+## 📁 CREATE_NEW_FOLDER
+
+| پارامتر    | نوع | اجباری | توضیح |
+|------------|-----|--------|--------|
+| folderName | string | ✅ | نام پوشه |
+| in         | string | ❌ | مسیر والد |
+
+### ✅ خروجی موفق
+```json
+{
+  "status": true,
+  "message": "Folder successfully created.",
+  "result": {
+    "path": "newfolder/README.md",
+    "url": "https://username.github.io/newfolder/README.md"
+  }
+}
+```
+
+### ❌ خروجی ناموفق
+```json
+{
+  "status": false,
+  "message": "Missing POST parameter: folderName"
+}
+```
+
+---
+
+## ⬆️ UPLOAD_FILES
+
+| پارامتر | نوع | اجباری | توضیح |
+|---------|-----|--------|--------|
+| path    | string | ✅ | مسیر روی سرور |
+| in      | string | ❌ | مسیر در GitHub |
+
+### ✅ خروجی موفق
+```json
+{
+  "status": true,
+  "message": "Upload(s) completed.",
+  "result": [
+    {
+      "path": "img1.png",
+      "url": "https://username.github.io/images/img1.png"
+    },
+    {
+      "path": "img2.png",
+      "url": "https://username.github.io/images/img2.png"
+    }
+  ]
+}
+```
+
+### ❌ خروجی ناموفق
+```json
+{
+  "status": false,
+  "message": "Path does not exist."
+}
+```
