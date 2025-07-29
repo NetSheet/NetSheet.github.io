@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نیم بها کننده</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Vazirmatn',Tahoma,sans-serif}body{background:#1f2937;color:#f9fafb;display:flex;justify-content:center;align-items:center;min-height:100vh;flex-direction:column;padding:2rem}input{width:100%;padding:1rem;border-radius:0.5rem;border:1px solid #4b5563;background:#374151;color:#f9fafb;margin-bottom:1rem;direction:ltr}button{padding:0.75rem 1.5rem;border:none;border-radius:0.5rem;cursor:pointer;font-weight:bold;margin:0.25rem}#result{margin-top:1rem;display:none;word-break:break-word;border:1px solid #4b5563;padding:1rem;border-radius:0.5rem;position:relative}#success-message{color:#059669;margin-top:0.5rem;display:none}.btn-download{background:#10b981;color:#fff}.btn-check{background:#f59e0b;color:#fff}.btn-generate{background:#3b82f6;color:#fff}
+  </style>
+</head>
+<body>
+  <h1 style="margin-bottom:1rem;">تبدیل لینک به نیم‌بها</h1>
+  <input type="text" id="link" placeholder="https://example.com/file.zip">
+  <div>
+    <button class="btn-generate" onclick="generateLink()">تولید لینک نیم‌بها</button>
+  </div>
+  <div id="loader" style="margin-top:1rem;display:none">⏳ در حال بررسی...</div>
+  <div id="result">
+    <div><strong>لینک نیم‌بها:</strong></div>
+    <div id="generated-link" style="margin-top:0.5rem"></div>
+    <button class="btn-download" onclick="downloadLink()">دانلود</button>
+    <button class="btn-check" onclick="checkHalfPrice()">بررسی نیم‌بها</button>
+    <div id="success-message">✅ لینک کپی شد!</div>
+  </div>
+  <div id="error" style="color:#dc2626;margin-top:1rem;display:none"></div>
+  <script>
+    function generateLink() {
+      const link = document.getElementById('link').value;
+      const result = document.getElementById('result');
+      const loader = document.getElementById('loader');
+      const error = document.getElementById('error');
+      if (!link || !link.startsWith('http')) {
+        error.textContent = "لینک معتبر نیست."; error.style.display = 'block'; result.style.display = 'none'; return;
+      }
+      error.style.display = 'none'; loader.style.display = 'block';
+      fetch('?generate=' + encodeURIComponent(link))
+        .then(res => res.json())
+        .then(data => {
+          loader.style.display = 'none';
+          if (data.status === 'success') {
+            document.getElementById('generated-link').textContent = data.download_url;
+            result.style.display = 'block';
+          } else {
+            error.textContent = "خطا: " + data.message;
+            error.style.display = 'block';
+            result.style.display = 'none';
+          }
+        })
+        .catch(() => {
+          loader.style.display = 'none';
+          error.textContent = "خطای ارتباط با سرور.";
+          error.style.display = 'block';
+        });
+    }
+
+    function downloadLink() {
+      const url = document.getElementById('generated-link').textContent;
+      window.open(url, '_blank');
+    }
+
+    function checkHalfPrice() {
+      const url = document.getElementById('generated-link').textContent;
+      window.open(`https://linkirani.ir/?url=${encodeURIComponent(url)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
